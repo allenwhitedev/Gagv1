@@ -13,8 +13,12 @@
 <template name='gameLobby'>
 	<div class='gameLobby'>
   <h1>Game Lobby</h1>
+ <h2> Current Round: {{currRound}}</h2>
     {{#each player}}
-     {{name}} {{currScore}}<br>
+      {{#if isJudge}}
+      Judge: 
+      {{/if}}
+        {{name}} {{currScore}}<br>      
     {{/each}}
   </div>
 
