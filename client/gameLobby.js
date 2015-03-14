@@ -25,6 +25,17 @@ Template.gameLobby.events
 		console.log("roundWinner: " + roundWinner.name)
 		setTimeout(function(){swal({title: roundWinner.name, text: "Won the Round"})}, 1000)
 		Meteor.call('awardPoint', this.submitter)
+
+		// nextRound stuff
+		var currGame = GamesList.findOne({players: Meteor.userId()})
+		Meteor.call('nextRound')
+		if(currGame.round >= 5)
+		{
+			console.log("Should alert now: " + AlertsList.findOne({gameId: currGame._id}))
+			console.log(AlertsList.findOne({gameId: currGame._id}))
+			alertArgs = AlertsList.findOne({gameId: currGame._id})
+			setTimeout(function(){ swal(AlertsList.findOne({gameId: currGame._id}))}, 1000)
+		}
 	}
 })
 

@@ -8,7 +8,7 @@ Meteor.publish('theCards', function()
 })
 Meteor.publish('theGameUserRels', function()
 {
-	return GameUserRelsList.find({userId: this.userId})
+	return GameUserRelsList.find({/*userId: this.userId*/})
 })
 Meteor.publish('theUsers', function()
 {

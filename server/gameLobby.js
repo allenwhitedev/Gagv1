@@ -7,7 +7,10 @@ Meteor.methods({
 	},
 	'nextRound': function()
 	{
-		var gameId = GameUserRelsList.findOne({userId: Meteor.userId()}).gameId
+		//console.log("Why?: " + gameId)
+		var gameId = GamesList.findOne({players: Meteor.userId()})._id
+		console.log("Why?2: " + gameId)
+		//var gameId = GameUserRelsList.findOne({userId: Meteor.userId()}).gameId
 		var currRound = GamesList.findOne({_id: gameId}).round
 		var oldJudgeId = GamesList.findOne({_id: gameId}).players[currRound - 1]
 		var newJudgeId = GamesList.findOne({_id: gameId}).players[currRound]
@@ -74,6 +77,6 @@ Meteor.methods({
 	'awardPoint': function(winnerId)
 	{
 		Meteor.users.update({_id: winnerId}, {$inc: {currScore: 1}})
-		Meteor.call('nextRound')
+		//Meteor.call('nextRound')
 	}
 })	
