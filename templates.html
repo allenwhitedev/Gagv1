@@ -1,0 +1,12 @@
+<template name="preGameLobby">
+  {{#each game}}
+  <div class='openGame'>
+  	<span class='numPlayer'>{{players.count}}</span>
+  	{{#each player}}
+  		{{name}}<button class='joinGame'>Join Game</button>
+  	{{/each}}
+  </div>
+  {{/each}}
+
+
+</template>
