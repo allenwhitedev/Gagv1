@@ -1,4 +1,119 @@
+body {
+    background-color: #edeff0;
+}
+
 /* CSS declarations go here */
 .gameLobby {background: pink;}
 .card {border: 1px solid red; float: left;}
 .judgeCard {border: 1px solid black; float: left;}
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #21CE99;
+}
+
+.fa {
+    color: #ffffff;
+    text-align: vertical;
+    
+}
+
+ul {
+    margin: 0;
+    font-size: 35px;
+    width: 100%;
+}
+
+.inline {
+    display: inline;
+    float: left;
+    list-style: none;
+}
+
+.row {
+    margin: 0;
+}
+
+
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.logo {
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-family: Impact;
+    font-size: 35px;
+    color: #ffffff;
+}
+
+.green-banner {
+    width: 100%;
+    height: 50px;
+    background-color: #21CE99;
+}
+
+
+/* button */
+.newgame-btn {
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  font-family: Impact;
+  color: #ffffff;
+  font-size: 20px;
+  background: #34495E;
+  padding: 10px 50px 10px 50px;
+  text-decoration: none;
+  border: none;
+  display:block;
+  margin: 0 auto;
+}
+
+.newgame-btn:hover {
+  background: #222931;
+  text-decoration: none;
+}
+
+
+.banner-headers {
+    width: 100%;
+    height: 50px;
+}
+
+.banner-headers-blue {
+    background-color: #2887CE;
+    border: 2px black solid;
+}
+
+.banner-headers-purple {
+    background-color: #7D669E;
+    border: 2px black solid;
+}
+
+.banner-headers-yellow {
+    background-color: #EAC734;
+    border: 2px black solid;
+}
+
+.banner-logo {
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-family: Impact;
+    font-size: 30px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.loginButton {
+    text-align: center;
+    margin: 0 auto;
+}

@@ -4,9 +4,34 @@
 </head>
 
 <body>
-	{{> loginButtons}}
-  <h1>Welcome to GAG!</h1>
+    <div class="green-banner text-center"><span class="logo">GAG</span></div>
+    <br>
+    <div class="loginButton">{{> loginButtons}}</div>
+    <br>
   {{> preGameLobby}}
   {{> gameLobby}}
+  {{> footer}}
 </body>
 
+
+
+
+<template name="footer">
+    <div class="footer">
+
+<div class="row">
+      <div class="col-xs-1 col-md-2"></div>
+            <ul>
+                  <div class="col-xs-2 col-md-2"><a href="#"><li class="inline"><i class="fa fa-shopping-cart"></i></li></a></div>
+                  <div class="col-xs-2 col-md-2"><a href="#"><li class="inline"><i class="fa fa-users"></i></li></a></div>
+                  <div class="col-xs-2 col-md-2"><a href="#"><li class="inline"><i class="fa fa-home"></i></li></a></div>
+                  <div class="col-xs-2 col-md-2"><a href="#"><li class="inline"><i class="fa fa-comments"></i></li></a></div>
+                  <div class="col-xs-2 col-md-2"><a href="#"><li class="inline"><i class="fa fa-bars"></i></li></a></div>
+            </ul>
+      <div class="col-xs-2 col-md-2"></div>
+</div>
+
+
+
+    </div>
+</template>
