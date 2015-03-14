@@ -58,8 +58,17 @@ Meteor.methods({
 			AlertsList.insert({gameId: gameId, title: "Game Over!", text: finalWord, imageUrl: "http://gifgifs.com/animations/sports/soccer/Bouncing_ball.gif" })
 		}
 	},
-	'addToJudgePile': function(url, judgeId)
+	'addToJudgePile': function(judgeId, url)
 	{
-		JudgePilesList.insert()
+		var existingJPL = JudgePilesList.findOne({submitter: Meteor.userId(), judgeId: judgeId})
+		console.log("existingJPL: " + existingJPL)
+		if (existingJPL === null || existingJPL === undefined)
+			JudgePilesList.insert({judgeId: judgeId, url: url, submitter: Meteor.userId()})
+		//if(JudgePilesList.find({judgeId: judgeId}).count() == 4)
+		//	Meteor.call('judgeDecision')
+	},
+	'judgeDecision': function()
+	{
+		console.log('in judgeDecision')
 	}
 })	

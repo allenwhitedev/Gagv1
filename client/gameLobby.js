@@ -16,7 +16,7 @@ Template.gameLobby.events
 	},
 	'click img': function()
 	{
-		Meteor.call('addToJudgePile', this)
+		Meteor.call('addToJudgePile', localStorage.getItem('currJudgeId'), this.toString())
 	}
 })
 
@@ -52,5 +52,11 @@ Template.gameLobby.helpers
 	'currRound': function()
 	{
 		return GamesList.findOne({players: Meteor.userId()}).round
+	},
+	'judgeCard': function()
+	{
+		var currUserJPL = JudgePilesList.find({judgeId: Meteor.userId()})
+		if (currUserJPL.count() >= 4)
+			return JudgePilesList.find({judgeId: Meteor.userId()})
 	}
 })
