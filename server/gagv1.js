@@ -10,3 +10,7 @@ Meteor.publish('theGameUserRels', function()
 {
 	return GameUserRelsList.find({userId: this.userId})
 })
+Meteor.publish('theUsers', function()
+{
+	return Meteor.users.find({})
+})
