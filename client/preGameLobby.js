@@ -17,6 +17,8 @@ Template.preGameLobby.events
 ({
 	'click .joinGame': function()
 	{
+		var theCurrRound = GamesList.findOne({players: Meteor.userId()}).round
+		Session.set('roundPromptIndex', theCurrRound)
 		console.log(Meteor.userId())
 		Meteor.call('joinGame', Meteor.userId())
 	}

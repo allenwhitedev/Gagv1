@@ -16,10 +16,16 @@ Template.gameLobby.events
 	},
 	'click .cardImg': function()
 	{
+		var theCurrRound = GamesList.findOne({players: Meteor.userId()}).round
+		console.log('theCurrRound: ' + theCurrRound)
+		Session.set('roundPromptIndex', theCurrRound)
 		Meteor.call('addToJudgePile', localStorage.getItem('currJudgeId'), this.toString())
 	},
 	'click .judgeImg': function()
 	{
+		var theCurrRound = GamesList.findOne({players: Meteor.userId()}).round
+		console.log('theCurrRound: ' + theCurrRound)
+		Session.set('roundPromptIndex', theCurrRound)
 		roundWinner = Meteor.users.findOne({_id: this.submitter})
 		console.log('this.submitter: ' + this.submitter)
 		console.log("roundWinner: " + roundWinner.name)
@@ -79,5 +85,10 @@ Template.gameLobby.helpers
 		var currUserJPL = JudgePilesList.find({judgeId: Meteor.userId()})
 		if (currUserJPL.count() >= 4)
 			return JudgePilesList.find({judgeId: Meteor.userId()})
+	},
+	'prompt': function(roundIndex)
+	{
+		var promptArray = ["When I want to be cool...", "How I feel about college...", "My reaction when the Seahawks lost the Super Bowl...", "Me talking to my crush....", "I show up to the club like..."]
+		return promptArray[Session.get('roundPromptIndex')]
 	}
 })
