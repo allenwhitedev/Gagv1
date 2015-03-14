@@ -19,10 +19,6 @@ Meteor.methods({
 			// have text be who won
 			var playerIdsArray = GamesList.findOne({_id: gameId}).players
 			console.log('playerIdsArray[0]: ' + playerIdsArray[0])
-			// for (i = 0; i < playerIdsArray.length; i++)
-			// {
-			// 	console.log('playerId: ' + playerIdsArray[i])
-			// }
 			var highestScore = 1
 			var tiedPlayersArray = []
 			var tiedPlayersText = ""
@@ -30,33 +26,34 @@ Meteor.methods({
 
 			for (i = 0; i < playerIdsArray.length; i++)
 			{
-				console.log('iterated in for in loop')
 				pScore = Meteor.users.findOne({_id: playerIdsArray[i]}).currScore
 				if(pScore > 2)
 				{
 					console.log("pscore was greater than 2")
 					var winner = Meteor.users.findOne({_id: playerIdsArray[i]}).name
 				}
-				else if (pScore >= highestScore)
+				else if (pScore > highestScore)
 				{
 					highestScore = pScore
-					tiedPlayers.push(Meteor.users.findOne({_id: playerIdsArray[i]}).name)
+					console.log("should be name: " + Meteor.users.findOne({_id: playerIdsArray[i]}).name)
+					tiedPlayersArray = [Meteor.users.findOne({_id: playerIdsArray[i]}).name]
 				}
+				else if (pScore == highestScore)
+					tiedPlayersArray.push(Meteor.users.findOne({_id: playerIdsArray[i]}).name)
 			}
 			if (winner)
-				finalWord = "The winner is " + winner
+				var finalWord = "The winner is " + winner
 			else
 			{
-				for (player in tiedPlayersArray)
+				for (i = 0; i < tiedPlayersArray.length; i++)
 				{
-					tiedPlayersText += player
-					tiedPlayersText += " "
+					tiedPlayersText += tiedPlayersArray[i]
+					if (i + 1 < tiedPlayersArray.length)
+					tiedPlayersText += " and "
 				}
 			var finalWord =	"Wow! It's a tie between " + tiedPlayersText
 			console.log("finalWord: " + finalWord)
 			}
-			console.log("winner: " + winner)
-			var finalWord = "The winnner is " + winner
 			AlertsList.insert({gameId: gameId, title: "Game Over!", text: finalWord, imageUrl: "http://gifgifs.com/animations/sports/soccer/Bouncing_ball.gif" })
 		}
 	}
