@@ -14,7 +14,9 @@
 	<div class='gameLobby'>
   <h1>Game Lobby</h1>
  <h2> Current Round: {{currRound}}</h2>
-  {{prompt}}
+  {{#each prompt}}
+  {{this}}<br>
+  {{/each}}
  <button class='nextRound'>Next Round</button><br>
     {{#each player}}
       {{#if isJudge}}
