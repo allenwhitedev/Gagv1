@@ -5,5 +5,10 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
+accounts-password
+accounts-ui
+accounts-base
+twbs:bootstrap
+jquery
+natestrauser:font-awesome
+kevohagan:sweetalert
