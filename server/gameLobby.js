@@ -1,0 +1,63 @@
+Meteor.methods({	
+	'startGame': function(gameId)
+	{
+		GamesList.update({_id: gameId}, {$inc: {round: 1}})
+		var firstJudgeId = GamesList.findOne({_id: gameId}).players[0]
+		Meteor.users.update({_id: firstJudgeId}, {$set: {isJudge: true}})
+	},
+	'nextRound': function()
+	{
+		var gameId = GameUserRelsList.findOne({userId: Meteor.userId()}).gameId
+		var currRound = GamesList.findOne({_id: gameId}).round
+		var oldJudgeId = GamesList.findOne({_id: gameId}).players[currRound - 1]
+		var newJudgeId = GamesList.findOne({_id: gameId}).players[currRound]
+		Meteor.users.update({_id: oldJudgeId}, {$set: {isJudge: false}})
+		Meteor.users.update({_id: newJudgeId}, {$set: {isJudge: true}})
+		GamesList.update({_id: gameId}, {$inc: {round: 1}})
+		if (currRound >= 5)
+		{	
+			// have text be who won
+			var playerIdsArray = GamesList.findOne({_id: gameId}).players
+			console.log('playerIdsArray[0]: ' + playerIdsArray[0])
+			// for (i = 0; i < playerIdsArray.length; i++)
+			// {
+			// 	console.log('playerId: ' + playerIdsArray[i])
+			// }
+			var highestScore = 1
+			var tiedPlayersArray = []
+			var tiedPlayersText = ""
+			var pScore = 1
+
+			for (i = 0; i < playerIdsArray.length; i++)
+			{
+				console.log('iterated in for in loop')
+				pScore = Meteor.users.findOne({_id: playerIdsArray[i]}).currScore
+				if(pScore > 2)
+				{
+					console.log("pscore was greater than 2")
+					var winner = Meteor.users.findOne({_id: playerIdsArray[i]}).name
+				}
+				else if (pScore >= highestScore)
+				{
+					highestScore = pScore
+					tiedPlayers.push(Meteor.users.findOne({_id: playerIdsArray[i]}).name)
+				}
+			}
+			if (winner)
+				finalWord = "The winner is " + winner
+			else
+			{
+				for (player in tiedPlayersArray)
+				{
+					tiedPlayersText += player
+					tiedPlayersText += " "
+				}
+			var finalWord =	"Wow! It's a tie between " + tiedPlayersText
+			console.log("finalWord: " + finalWord)
+			}
+			console.log("winner: " + winner)
+			var finalWord = "The winnner is " + winner
+			AlertsList.insert({gameId: gameId, title: "Game Over!", text: finalWord, imageUrl: "http://gifgifs.com/animations/sports/soccer/Bouncing_ball.gif" })
+		}
+	}
+})	

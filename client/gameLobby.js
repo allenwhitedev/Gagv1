@@ -4,7 +4,15 @@ Template.gameLobby.events
 ({
 	'click .nextRound': function()
 	{
+		var currGame = GamesList.findOne({players: Meteor.userId()})
 		Meteor.call('nextRound')
+		if(currGame.round > 5)
+		{
+			console.log("Should alert now: " + AlertsList.findOne({gameId: currGame._id}))
+			console.log(AlertsList.findOne({gameId: currGame._id}))
+			alertArgs = AlertsList.findOne({gameId: currGame._id})
+			setTimeout(function(){ swal(AlertsList.findOne({gameId: currGame._id}))}, 1000)
+		}
 	}
 })
 

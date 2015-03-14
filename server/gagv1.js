@@ -14,3 +14,7 @@ Meteor.publish('theUsers', function()
 {
 	return Meteor.users.find({})
 })
+Meteor.publish('theAlerts', function()
+{
+	return AlertsList.find({})
+})
