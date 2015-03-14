@@ -22,8 +22,16 @@ Meteor.methods
 					GamesList.update({_id: openGame._id}, {$addToSet: {players: Meteor.userId()}})
 					GameUserRelsList.insert({gameId: openGame._id, userId: Meteor.userId()})
 					Meteor.users.update({_id: Meteor.userId()}, {$set: {currScore: 0}})
+				if(GamesList.findOne({_id: openGame._id}).players.length == 5)
+					Meteor.call('startGame', openGame._id)
 				}
 			}
 		}
+	},
+	'startGame': function(gameId)
+	{
+		GamesList.update({_id: gameId}, {$inc: {round: 1}})
+		var firstJudgeId = GamesList.findOne({_id: gameId}).players[0]
+		Meteor.users.update({_id: firstJudgeId}, {$set: {isJudge: true}})
 	}
 })
