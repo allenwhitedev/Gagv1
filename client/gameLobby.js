@@ -57,7 +57,7 @@ Template.gameLobby.helpers
 	'card': function()
 	{
 		extraUrlArray = ["http://gifgifs.com/animations/sports/other-exercises/Yoga.gif"]
-		var urlArray = ["http://gifgifs.com/animations/sports/soccer/Bouncing_ball.gif", "http://gifgifs.com/animations/sports/football/Tackle.gif", "http://gifgifs.com/animations/sports/soccer/goal.gif", "http://gifgifs.com/animations/sports/bicycling/biker.gif", "http://gifgifs.com/animations/sports/baseball/3D_bat.gif"]
+		var urlArray = ["http://i.imgur.com/a5bY5.gif", "http://s3-ec.buzzfed.com/static/2014-07/18/8/enhanced/webdr10/anigif_enhanced-buzz-31770-1405685426-4.gif", "https://33.media.tumblr.com/35ccc757e8daddeb1c0e2589d945a7aa/tumblr_nfvf93O2vC1ta3tz1o1_500.gif", "http://funny-pictures-blog.com/wp-content/uploads/funny-pictures-meme-gif/2014/02/Funny-GIF-Damn-you-pizza.gif", "http://clutch.mtv.com/wp-content/uploads/2012/03/funny-gifs-dancing-alone1.gif"]
 		return urlArray
 	},
 	'isJudge': function()
