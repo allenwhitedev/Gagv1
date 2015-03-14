@@ -17,13 +17,11 @@
  <button class='nextRound'>Next Round</button><br>
     {{#each player}}
       {{#if isJudge}}
-      YO
-        YOLO
-          {{#each judgeCard}}
-          <div class='judgeCard'>
-            <img src='{{url}}'>
-          </div>
-          {{/each}}
+        {{#each judgeCard}}
+        <div class='judgeCard'>
+          <img src='{{url}}' class='judgeImg'>
+        </div>
+        {{/each}}
       Judge: 
       {{/if}}
         {{name}} {{currScore}}<br>      
@@ -33,7 +31,7 @@
   <div class='userHand'>
     {{#each card}}
     <div class='card'>
-      <img src="{{this}}">
+      <img src="{{this}}" class='cardImg'>
     </div>
     {{/each}}
   </div>

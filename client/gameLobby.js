@@ -14,9 +14,17 @@ Template.gameLobby.events
 			setTimeout(function(){ swal(AlertsList.findOne({gameId: currGame._id}))}, 1000)
 		}
 	},
-	'click img': function()
+	'click .cardImg': function()
 	{
 		Meteor.call('addToJudgePile', localStorage.getItem('currJudgeId'), this.toString())
+	},
+	'click .judgeImg': function()
+	{
+		roundWinner = Meteor.users.findOne({_id: this.submitter})
+		console.log('this.submitter: ' + this.submitter)
+		console.log("roundWinner: " + roundWinner.name)
+		setTimeout(function(){swal({title: roundWinner.name, text: "Won the Round"})}, 1000)
+		Meteor.call('awardPoint', this.submitter)
 	}
 })
 

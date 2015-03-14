@@ -70,5 +70,10 @@ Meteor.methods({
 	'judgeDecision': function()
 	{
 		console.log('in judgeDecision')
+	},
+	'awardPoint': function(winnerId)
+	{
+		Meteor.users.update({_id: winnerId}, {$inc: {currScore: 1}})
+		Meteor.call('nextRound')
 	}
 })	
