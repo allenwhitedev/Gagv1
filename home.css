@@ -1,2 +1,3 @@
 /* CSS declarations go here */
 .gameLobby {background: pink;}
+.card {border: 1px solid red; float: left;}
