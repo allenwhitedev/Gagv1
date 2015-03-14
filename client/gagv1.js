@@ -1,4 +1,4 @@
 Meteor.subscribe('theGames')
 Meteor.subscribe('theCards')
-Meteor.suscribe('theGameUserRels')
+Meteor.subscribe('theGameUserRels')
 
