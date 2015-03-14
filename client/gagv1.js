@@ -3,5 +3,5 @@ Meteor.subscribe('theCards')
 Meteor.subscribe('theGameUserRels')
 Meteor.subscribe('theUsers')
 Meteor.subscribe('theAlerts')
-Meteor.subscribe('theJudgePiles')
+Stuff = Meteor.subscribe('theJudgePiles')
 

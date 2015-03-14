@@ -35,6 +35,8 @@ Template.gameLobby.events
 			console.log(AlertsList.findOne({gameId: currGame._id}))
 			alertArgs = AlertsList.findOne({gameId: currGame._id})
 			setTimeout(function(){ swal(AlertsList.findOne({gameId: currGame._id}))}, 1000)
+		Stuff.stop()
+		Stuff = Meteor.subscribe('theJudgePiles')
 		}
 	}
 })
