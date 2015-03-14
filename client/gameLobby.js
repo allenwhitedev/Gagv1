@@ -2,7 +2,10 @@
 // EVENTS (GAMELOBBY)
 Template.gameLobby.events
 ({
-
+	'click .nextRound': function()
+	{
+		Meteor.call('nextRound')
+	}
 })
 
 // HELPERS (GAMELOBBY)

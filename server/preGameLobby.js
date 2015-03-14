@@ -33,5 +33,16 @@ Meteor.methods
 		GamesList.update({_id: gameId}, {$inc: {round: 1}})
 		var firstJudgeId = GamesList.findOne({_id: gameId}).players[0]
 		Meteor.users.update({_id: firstJudgeId}, {$set: {isJudge: true}})
+	},
+	'nextRound': function()
+	{
+		console.log('Made it here!')
+		gameId = GameUserRelsList.findOne({userId: Meteor.userId()}).gameId
+		var currRound = GamesList.findOne({_id: gameId}).round
+		var oldJudgeId = GamesList.findOne({_id: gameId}).players[currRound - 1]
+		var newJudgeId = GamesList.findOne({_id: gameId}).players[currRound]
+		Meteor.users.update({_id: oldJudgeId}, {$set: {isJudge: false}})
+		Meteor.users.update({_id: newJudgeId}, {$set: {isJudge: true}})
+		GamesList.update({_id: gameId}, {$inc: {round: 1}})
 	}
 })
