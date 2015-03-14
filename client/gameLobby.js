@@ -6,13 +6,17 @@ Template.gameLobby.events
 	{
 		var currGame = GamesList.findOne({players: Meteor.userId()})
 		Meteor.call('nextRound')
-		if(currGame.round > 5)
+		if(currGame.round >= 5)
 		{
 			console.log("Should alert now: " + AlertsList.findOne({gameId: currGame._id}))
 			console.log(AlertsList.findOne({gameId: currGame._id}))
 			alertArgs = AlertsList.findOne({gameId: currGame._id})
 			setTimeout(function(){ swal(AlertsList.findOne({gameId: currGame._id}))}, 1000)
 		}
+	},
+	'click img': function()
+	{
+		Meteor.call('addToJudgePile', this)
 	}
 })
 
@@ -40,7 +44,10 @@ Template.gameLobby.helpers
 	'isJudge': function()
 	{
 		if(this.isJudge == true)
+		{
+			localStorage.setItem('currJudgeId', this._id)
 			return true
+		}
 	},
 	'currRound': function()
 	{

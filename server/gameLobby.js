@@ -14,7 +14,8 @@ Meteor.methods({
 		Meteor.users.update({_id: oldJudgeId}, {$set: {isJudge: false}})
 		Meteor.users.update({_id: newJudgeId}, {$set: {isJudge: true}})
 		GamesList.update({_id: gameId}, {$inc: {round: 1}})
-		if (currRound >= 5)
+		console.log("currRound: " + currRound)
+		if (currRound >= 4)
 		{	
 			// have text be who won
 			var playerIdsArray = GamesList.findOne({_id: gameId}).players
@@ -56,5 +57,9 @@ Meteor.methods({
 			}
 			AlertsList.insert({gameId: gameId, title: "Game Over!", text: finalWord, imageUrl: "http://gifgifs.com/animations/sports/soccer/Bouncing_ball.gif" })
 		}
+	},
+	'addToJudgePile': function(url, judgeId)
+	{
+		JudgePilesList.insert()
 	}
 })	

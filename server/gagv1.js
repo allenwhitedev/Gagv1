@@ -18,3 +18,7 @@ Meteor.publish('theAlerts', function()
 {
 	return AlertsList.find({})
 })
+Meteor.publish('theJudgePiles', function()
+{
+	return JudgePilesList.find({})
+})
