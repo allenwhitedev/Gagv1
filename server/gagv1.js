@@ -1,6 +1,6 @@
 Meteor.publish('theGames', function()
 {
-	return GamesList.find({isOpen: true})
+	return GamesList.find({})
 })
 Meteor.publish('theCards', function()
 {
